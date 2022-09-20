@@ -24,21 +24,45 @@ public class Main {
 			}
 			System.out.print("Enter operation (+ or - or * or / or %): ");
 			
-			String a= sc.next(); 
+			String operator= sc.next(); 
 			
-			while( (a.equals("+")==false)&&(a.equals("-")==false)&&(a.equals("*")==false)&&(a.equals("/")==false)&&(a.equals("%")==false)) {
+			while( (operator.equals("+")==false)&&(operator.equals("-")==false)&&(operator.equals("*")==false)&&(operator.equals("/")==false)&&(operator.equals("%")==false)) {
 				System.out.print("Enter correct operation (+ or - or * or / or %): ");	
-				a= sc.next();
+				operator= sc.next();
 			}
 			
 			System.out.print("Enter first number: ");
-			int b= sc.nextInt();
+			int firstNum= sc.nextInt();
 			System.out.print("Enter second number: "); 
-			int c=sc.nextInt();
+			int secondNum=sc.nextInt();
+			basicCalc(operator, firstNum, secondNum);
+			
 			System.out.println(choice);
-			System.out.println(a);
-			System.out.println(b);
-			System.out.println(c);
+			System.out.println(operator);
+			System.out.println(firstNum);
+			System.out.println(secondNum);
 		}while(choice.equals("e")==false);	
+	}
+	
+	public static int basicCalc(String operator, int firstNum, int secondNum) {
+		if(operator.equals("+")) {
+			int add=firstNum + secondNum;
+			return add;
+		}else if (operator.equals("-")) {
+			int sub=firstNum - secondNum;
+			return sub;
+		}else if (operator.equals("*")) {
+			int mul=firstNum * secondNum;
+			return mul;
+		}else if (operator.equals("/")) {
+			int div=firstNum / secondNum;
+			return div;
+		}else if (operator.equals("%")) {
+			int mod=firstNum % secondNum;
+			return mod;
+		}else {
+			System.out.println("invalid operator");
+			return 0;
+		}
 	}
 }
