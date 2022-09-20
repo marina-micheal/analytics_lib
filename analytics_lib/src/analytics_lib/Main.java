@@ -7,6 +7,10 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//System.out.println("Hello World");
+		mainLoop();
+	}
+	
+	public static void mainLoop() {
 		String choice="";
 		do {
 			Scanner sc =new Scanner(System.in);
@@ -35,7 +39,6 @@ public class Main {
 			System.out.println(a);
 			System.out.println(b);
 			System.out.println(c);
-		}while(choice.equals("e")==false);		
+		}while(choice.equals("e")==false);	
 	}
-
 }
