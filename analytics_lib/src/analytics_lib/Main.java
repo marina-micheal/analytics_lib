@@ -21,10 +21,12 @@ public class Main {
 			System.out.print("Enter operation (+ or - or * or / or %): ");
 			
 			String a= sc.next(); 
-			if((a.equals("+")==false)&&(a.equals("-")==false)&&(a.equals("*")==false)&&(a.equals("/")==false)&&(a.equals("%")==false)) {
+			
+			while( (a.equals("+")==false)&&(a.equals("-")==false)&&(a.equals("*")==false)&&(a.equals("/")==false)&&(a.equals("%")==false)) {
 				System.out.print("Enter correct operation (+ or - or * or / or %): ");	
-				a= sc.next(); 
+				a= sc.next();
 			}
+			
 			System.out.print("Enter first number: ");
 			int b= sc.nextInt();
 			System.out.print("Enter second number: "); 
