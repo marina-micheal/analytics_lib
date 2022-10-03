@@ -18,28 +18,42 @@ public class MainMenu {
 				System.out.print("enter the file path");
 				
 				filePath=sc.next();
-				
-				 try {
-				      File myObj = new File(filePath);
-				      Scanner myReader = new Scanner(myObj);
-				      while (myReader.hasNextLine()) {
-				    	  int operations=myReader.nextInt();
-			    		  myReader.nextLine();
-				    	  for(int i =0;i< operations;i++) {
-				    		  String line=myReader.nextLine();
-				    		  int firstNumFile=myReader.nextInt();
-				    		  String operatorFile;
-				    		  int secondNumFile=myReader.nextInt();
-				    		  Calculator calc = new Calculator();
-				    		  int resultFile=calc.calculate(OperatorFile,firstNumFile,secondNumFile);
-				    		  System.out.println(resultFile);
-				    	  }
-				      }
-				      myReader.close();
-				    } catch (FileNotFoundException e) {
-				      System.out.println("An error occurred.");
-				      e.printStackTrace();
-				    }
+				 if (filePath.endsWith("desc")) {
+			    	  
+			      
+					 try {
+					      File myObj = new File(filePath);
+					     
+					      Scanner myReader = new Scanner(myObj);
+					      
+					      while (myReader.hasNextLine()) {
+					    	  int operations=myReader.nextInt();
+				    		  myReader.nextLine();
+					    	  for(int i =0;i< operations;i++) {
+					    		  String line=myReader.nextLine();
+					    		  String[] parts = line.split(" ");
+					    		  int firstNumFile = Integer.parseInt(parts[0]) ; 
+					    		  System.out.println(firstNumFile);
+					    		  
+					    		 
+					    		  String operatorFile=parts[1];
+					    		  System.out.println(operatorFile);
+					    		  
+					    		  int secondNumFile = Integer.parseInt(parts[2]) ; 
+					    		  System.out.println(secondNumFile);
+	
+					    		 
+					    		  Calculator calc = new Calculator();
+					    		  int resultFile=calc.calculate(operatorFile,firstNumFile,secondNumFile);
+					    		  System.out.println(resultFile);
+					    	  }
+					      }
+					      myReader.close();
+					    } catch (FileNotFoundException e) {
+					      System.out.println("An error occurred.");
+					      e.printStackTrace();
+					    }
+				 }
 			}else if(choice.equals("o")) {
 				System.out.print("Enter operation (+ or - or * or / or %): ");
 				
