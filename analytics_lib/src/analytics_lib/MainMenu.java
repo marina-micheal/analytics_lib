@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 public class MainMenu {
 	public void mainLoop() {
 		String choice="";
-//		 String filePath="";
+		String filePath="";
 		
 		do {
 			Scanner sc =new Scanner(System.in);
@@ -17,9 +17,11 @@ public class MainMenu {
 				break;
 			}else if(choice.equals("f")) {
 				System.out.print("enter the file path");
+				Scanner scanner =new Scanner(System.in);
+				filePath=scanner.next();
 				
-				FileReaderFacory f=new FileReaderFacory();
-				
+				FileReaderFacory.createFileReader(filePath);
+			
 				
 				
 				  /* 	
