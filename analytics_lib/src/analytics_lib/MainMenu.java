@@ -11,7 +11,7 @@ public class MainMenu {
 		
 		do {
 			Scanner sc =new Scanner(System.in);
-			System.out.print("choose to make the operation(o) or exit(e) or file(f): ");  
+			System.out.print("choose to make the operation(o) or exit(e) or file(f) or array(a): ");  
 			choice= sc.nextLine(); 
 			if(choice.equals("e")) {
 				break;
@@ -50,6 +50,10 @@ public class MainMenu {
 				
 				int result = calc.calculate(operator, firstNum, secondNum);
 				System.out.println(result);
+				
+			}else if(choice.equals("a")) {
+				System.out.print("Enter Array Length");
+				
 				
 			}else {
 				System.out.println("Invalid input, choose correct choice");
