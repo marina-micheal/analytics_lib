@@ -2,6 +2,18 @@ package analytics_lib;
 
 public class Calculator {
 	
+	public int calculate (OperationData opData) {
+		int result;
+		
+		if (opData == null) {
+			result = 0;
+		} else {
+			result = calculate(opData.getOp(), opData.getFirstNum(), opData.getSecondNum());
+		}
+		
+		return result;
+	}
+	
 	public int calculate(String operator, int firstNum, int secondNum) {
 		if(operator.equals("+")) {
 			int add=firstNum + secondNum;
