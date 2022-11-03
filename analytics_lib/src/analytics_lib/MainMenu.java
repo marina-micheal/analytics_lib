@@ -64,7 +64,14 @@ public class MainMenu {
 					Nums.add(num);	
 				}
 				System.out.print("Your array" + Nums);
-				System.out.print("what operation you want to make on the array" );
+				System.out.print("what operation you want to make on the array" + "Print maximum\r\n"
+						+ "Print minimum\r\n"
+						+ "Print mean\r\n"
+						+ "Print sorted array\r\n"
+						+ "Search for number\r\\n"
+						+"Return back to main menu");
+				String OP=sc.next();
+				int n=0;
 				break;
 				
 			}else {
