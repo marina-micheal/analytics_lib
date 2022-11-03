@@ -1,10 +1,13 @@
 package analytics_lib;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
 public class MainMenu {
+	ArrayList<Integer> Nums = new ArrayList<Integer>();
+	
 	public void mainLoop() {
 		String choice="";
 		String filePath="";
@@ -52,8 +55,17 @@ public class MainMenu {
 				System.out.println(result);
 				
 			}else if(choice.equals("a")) {
-				System.out.print("Enter Array Length");
-				
+				System.out.print("what is the number of Numbers you want to write in the array?");
+				int NumOfNumbers= sc.nextInt(); 
+				for(int i =0;i < NumOfNumbers ;i++) {
+					System.out.print("put number you want");
+					int num;
+					num=sc.nextInt();
+					Nums.add(num);	
+				}
+				System.out.print("Your array" + Nums);
+				System.out.print("what operation you want to make on the array" );
+				break;
 				
 			}else {
 				System.out.println("Invalid input, choose correct choice");
@@ -66,6 +78,11 @@ public class MainMenu {
 			 * System.out.println(firstNum); System.out.println(secondNum);
 			 */
 		}while(true);	
+	}
+
+	private void While(boolean b) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
