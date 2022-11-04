@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 
 public class MainMenu {
-	ArrayList<Integer> Nums = new ArrayList<Integer>();
+	
 	
 	public void mainLoop() {
 		String choice="";
@@ -58,6 +58,7 @@ public class MainMenu {
 				
 			}else if(choice.equals("a")) {
 				ArrOperations arrOp=new ArrOperations();
+				arrOp.Op();
 				
 			}else {
 				System.out.println("Invalid input, choose correct choice");
