@@ -1,81 +1,77 @@
 package analytics_lib;
 
-import java.io.File;
-import java.util.Collections;
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.FileNotFoundException;
-import java.util.Arrays;
 
 public class MainMenu {
 	
+	Scanner sc;
+	SubMenuFactorty subMenuManager = null;
+	public MainMenu() {
+		// TODO Auto-generated constructor stub
+		sc = new Scanner(System.in);
+		subMenuManager = SubMenuFactorty.getInstance();
+	}
 	
-	public void mainLoop() {
-		String choice="";
-		String filePath="";
-		
+	private char parseMainChoice() {
+		System.out.print("Choose operation to perform:\r\n"
+				+ "(s) for simple calculation operations\r\n"
+				+ "(f) for batch calculation operations from file\r\n"
+				+ "(a) to perform operations on arrays\r\n"
+				+ "(v) to perform linear operations on vectors\r\n"
+				+ "(e) to exit\r\n"
+				+ "Please enter your choice: "
+				);
+		String scan;
 		do {
-			Scanner sc =new Scanner(System.in);
-			System.out.print("choose to make the operation(o) or exit(e) or file(f) or array(a): ");  
-			choice= sc.nextLine(); 
-			if(choice.equals("e")) {
-				break;
-			}else if(choice.equals("f")) {
-				System.out.print("Enter file path: ");
-				filePath = sc.nextLine();
-				FileReader fReader = FileReaderFacory.createFileReader(filePath);
-				if (fReader != null) {
-					Calculator calc = new Calculator();
-					int numOfOps = fReader.getNumOfOps();
-					for (int i = 0; i < numOfOps; i++) {
-						OperationData opData = fReader.readLine();
-						if (opData != null) {
-							int result = calc.calculate(opData);
-							System.out.println(result);
-						}						
-					}
-				}
-			 
-			}else if(choice.equals("o")) {
-				System.out.print("Enter operation (+ or - or * or / or %): ");
-				
-				String operator= sc.next(); 
-				
-				while( (operator.equals("+")==false)&&(operator.equals("-")==false)&&(operator.equals("*")==false)&&(operator.equals("/")==false)&&(operator.equals("%")==false)) {
-					System.out.print("Enter correct operation (+ or - or * or / or %): ");	
-					operator= sc.next();
-				}
-				
-				System.out.print("Enter first number: ");
-				int firstNum= sc.nextInt();
-				System.out.print("Enter second number: "); 
-				int secondNum=sc.nextInt();
+			scan = sc.nextLine();
 			
-				Calculator calc = new Calculator();
+		} while (scan.length() <= 0);
+			
+		return scan.charAt(0);
+	}
+
+	private void displayUnexpectedErrorMessage() {
+		System.out.print("Unexpected error happened\n Please try again\n"); 
+	}
+	
+	private void displayWelcomeMessage() {
+		System.out.print("Welcome to analytical library interface\n"); 
+	}
+	
+	private void displayByeByeMessage() {
+		System.out.print("Bye Bye, see you next time\n"); 
+	}
+	
+	public void mainLoop() {		
+		Boolean exit_flag = false;
+		ISubMenu submenu = null;
+		displayWelcomeMessage();
+		do {
+			char choice = parseMainChoice();
+			switch(choice) {
+			case 's':
+			case 'f':
+			case 'a':
+			case 'v':
+				 submenu = subMenuManager.getSubMenuInterface(choice);
+				if (submenu == null) {
+					displayUnexpectedErrorMessage();
+				} else {
+					submenu.mainLoop();
+				}
+				break;
 				
-				int result = calc.calculate(operator, firstNum, secondNum);
-				System.out.println(result);
-				
-			}else if(choice.equals("a")) {
-				ArrOperations arrOp=new ArrOperations();
-				arrOp.Op();
-				
-			}else {
+			case 'e':
+				exit_flag = true;
+				break;
+
+			default:
 				System.out.println("Invalid input, choose correct choice");
-				//choice= sc.nextLine(); 
-				continue;
+				continue;				
 			}
 			
-			/*
-			 * System.out.println(choice); System.out.println(operator);
-			 * System.out.println(firstNum); System.out.println(secondNum);
-			 */
-		}while(true);	
-	}
-
-	private void While(boolean b) {
-		// TODO Auto-generated method stub
+		}while(!exit_flag);
 		
+		displayByeByeMessage();
 	}
-
 }

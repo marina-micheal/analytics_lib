@@ -1,11 +1,11 @@
 package analytics_lib;
 
-public class OperationData {
+public class SimpleOpData {
 	private String op;
 	private int firstNum;
 	private int secondNum;
 	
-	public OperationData (String opParam, int firstNumParam, int secondNumParam) {
+	public SimpleOpData (String opParam, int firstNumParam, int secondNumParam) {
 		op = opParam;
 		firstNum = firstNumParam;
 		secondNum = secondNumParam;

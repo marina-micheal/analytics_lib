@@ -2,7 +2,7 @@ package analytics_lib;
 
 public class Calculator {
 	
-	public int calculate (OperationData opData) {
+	public static int calculate (SimpleOpData opData) {
 		int result;
 		
 		if (opData == null) {
@@ -14,7 +14,7 @@ public class Calculator {
 		return result;
 	}
 	
-	public int calculate(String operator, int firstNum, int secondNum) {
+	public static int calculate(String operator, int firstNum, int secondNum) {
 		if(operator.equals("+")) {
 			int add=firstNum + secondNum;
 			return add;
