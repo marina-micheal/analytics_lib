@@ -22,7 +22,7 @@ public class FileReader {
 		}
 	}
 	
-	public OperationData readLine() {
+	public SimpleOpData readLine() {
       if (myReader.hasNextLine()) {
 			String line = myReader.nextLine();
 			String[] parts = line.split(" ");
@@ -35,7 +35,7 @@ public class FileReader {
 			int secondNum = Integer.parseInt(parts[2]) ; 
 			//System.out.println(secondNumFile);
 	
-		  	OperationData opData = new OperationData(operator, firstNum, secondNum);	  
+			SimpleOpData opData = new SimpleOpData(operator, firstNum, secondNum);
 		  	return opData;
   		} else {
   			return null;
