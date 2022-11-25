@@ -25,7 +25,7 @@ public class ArrOpMenu implements ISubMenu {
 		}
 		System.out.print("Your array: " + Nums);
 	}
-	
+	// options operated on the array when given
 	private int printArrayOpMenu() {
 		System.out.print("\nWhat operation you want to make on the array\r\n" 
 				+ "(1) Print maximum\r\n"

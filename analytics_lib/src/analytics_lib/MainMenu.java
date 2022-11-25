@@ -6,12 +6,17 @@ public class MainMenu {
 	
 	Scanner sc;
 	SubMenuFactorty subMenuManager = null;
+	Logger logger;
 	public MainMenu() {
-		// TODO Auto-generated constructor stub
 		sc = new Scanner(System.in);
 		subMenuManager = SubMenuFactorty.getInstance();
+		logger = Logger.getInstance(LogLevel.LOG_LEVEL_DEFAULT);
 	}
 	
+	/**
+	 * Parses user choice for the main menu
+	 * @return
+	 */
 	private char parseMainChoice() {
 		System.out.print("Choose operation to perform:\r\n"
 				+ "(s) for simple calculation operations\r\n"
@@ -30,18 +35,31 @@ public class MainMenu {
 		return scan.charAt(0);
 	}
 
+	//displayed messages
+		
 	private void displayUnexpectedErrorMessage() {
 		System.out.print("Unexpected error happened\n Please try again\n"); 
 	}
 	
 	private void displayWelcomeMessage() {
-		System.out.print("Welcome to analytical library interface\n"); 
+		//System.out.print("Welcome to analytical library interface\n");
+		logger.log("Welcome to analytical library interface");
 	}
 	
 	private void displayByeByeMessage() {
 		System.out.print("Bye Bye, see you next time\n"); 
 	}
 	
+	/**
+	 * Displays 
+	 */
+	private void displayMessage() {
+		System.out.print("Bye Bye, see you next time\n"); 
+	}
+	
+	/**
+	 * Executes the main loop of the program.
+	 */
 	public void mainLoop() {		
 		Boolean exit_flag = false;
 		ISubMenu submenu = null;
@@ -66,7 +84,7 @@ public class MainMenu {
 				break;
 
 			default:
-				System.out.println("Invalid input, choose correct choice");
+				logger.log("Invalid input, choose correct choice", LogLevel.LOG_LEVEL_ERROR);
 				continue;				
 			}
 			

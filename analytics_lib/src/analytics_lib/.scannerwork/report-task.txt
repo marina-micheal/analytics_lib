@@ -2,5 +2,5 @@ projectKey=analytics_lib
 serverUrl=http://localhost:9000
 serverVersion=9.7.1.62043
 dashboardUrl=http://localhost:9000/dashboard?id=analytics_lib
-ceTaskId=AYReHQn_6KPtc2tW3_nQ
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYReHQn_6KPtc2tW3_nQ
+ceTaskId=AYSB1Ob-wn-pMgek852k
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYSB1Ob-wn-pMgek852k
