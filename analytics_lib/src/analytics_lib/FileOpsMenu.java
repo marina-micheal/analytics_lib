@@ -5,13 +5,15 @@ import java.util.Scanner;
 public class FileOpsMenu implements ISubMenu {
 
 	Scanner sc;
-
+	Logger logger;
 	public FileOpsMenu( ) {
-		sc = new Scanner(System.in);		
+		sc = new Scanner(System.in);	
+		logger = Logger.getInstance(LogLevel.LOG_LEVEL_DEFAULT);
 	}
 	
 	private String parseFileName() {
-		System.out.print("Enter file path: ");
+		//System.out.print("Enter file path: ");
+		logger.log("Enter file path:");
 		return sc.nextLine();
 	}
 	
@@ -24,6 +26,7 @@ public class FileOpsMenu implements ISubMenu {
 				if (opData != null) {
 					int result = Calculator.calculate(opData);
 					System.out.println(result);
+					
 				}						
 			}
 		}
@@ -31,6 +34,7 @@ public class FileOpsMenu implements ISubMenu {
 	
 	private Boolean askToContinue() {
 		System.out.print("Do you want to try another file? (y/n): ");
+		
 		String r;
 		do {
 			r = sc.nextLine();

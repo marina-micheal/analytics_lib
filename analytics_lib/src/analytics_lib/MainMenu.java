@@ -7,6 +7,7 @@ public class MainMenu {
 	Scanner sc;
 	SubMenuFactorty subMenuManager = null;
 	Logger logger;
+	
 	public MainMenu() {
 		sc = new Scanner(System.in);
 		subMenuManager = SubMenuFactorty.getInstance();
@@ -14,18 +15,20 @@ public class MainMenu {
 	}
 	
 	/**
-	 * Parses user choice for the main menu
+	 * Parses use
 	 * @return
 	 */
 	private char parseMainChoice() {
-		System.out.print("Choose operation to perform:\r\n"
+		logger.log("Choose operation to perform:\r\n"
 				+ "(s) for simple calculation operations\r\n"
 				+ "(f) for batch calculation operations from file\r\n"
 				+ "(a) to perform operations on arrays\r\n"
 				+ "(v) to perform linear operations on vectors\r\n"
 				+ "(e) to exit\r\n"
-				+ "Please enter your choice: "
-				);
+				+ "Please enter your choice: ");
+		
+		
+		
 		String scan;
 		do {
 			scan = sc.nextLine();
@@ -35,27 +38,24 @@ public class MainMenu {
 		return scan.charAt(0);
 	}
 
-	//displayed messages
-		
+	/**
+	 * Displays 
+	 */	
 	private void displayUnexpectedErrorMessage() {
-		System.out.print("Unexpected error happened\n Please try again\n"); 
+		
+		logger.log("Unexpected error happened\n Please try again\n",LogLevel.LOG_LEVEL_ERROR);
 	}
 	
 	private void displayWelcomeMessage() {
-		//System.out.print("Welcome to analytical library interface\n");
+		
 		logger.log("Welcome to analytical library interface");
 	}
 	
 	private void displayByeByeMessage() {
-		System.out.print("Bye Bye, see you next time\n"); 
+		
+		logger.log("Bye Bye, see you next time\n");
 	}
 	
-	/**
-	 * Displays 
-	 */
-	private void displayMessage() {
-		System.out.print("Bye Bye, see you next time\n"); 
-	}
 	
 	/**
 	 * Executes the main loop of the program.
