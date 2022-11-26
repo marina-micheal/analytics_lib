@@ -12,7 +12,7 @@ public class FileOpsMenu implements ISubMenu {
 	}
 	
 	private String parseFileName() {
-		//System.out.print("Enter file path: ");
+		
 		logger.log("Enter file path:");
 		return sc.nextLine();
 	}
@@ -25,7 +25,9 @@ public class FileOpsMenu implements ISubMenu {
 				SimpleOpData opData = fReader.readLine();
 				if (opData != null) {
 					int result = Calculator.calculate(opData);
-					System.out.println(result);
+					String resultString=Integer.toString(result); 
+					logger.log(resultString);
+				
 					
 				}						
 			}

@@ -7,18 +7,21 @@ import java.util.Scanner;
 public class ArrOpMenu implements ISubMenu {
 	ArrayList<Integer> Nums = null;
 	Scanner sc = null;
+	Logger logger;
 
 	public ArrOpMenu() {
 		Nums = new ArrayList<Integer>();
 		sc = new Scanner(System.in);
+		logger = Logger.getInstance(LogLevel.LOG_LEVEL_DEFAULT);
 	}
 	
 	private void scanNewArray() {
 		Nums.clear();
-		System.out.print("Please enter array length: ");
+
+		logger.log("Please enter array length: ");
 		int NumOfNumbers = sc.nextInt(); 
 		for(int i = 0; i < NumOfNumbers; i++) {
-			System.out.print("Write a new number to add to array: ");
+			logger.log("Write a new number to add to array: ");
 			int num;
 			num = sc.nextInt();
 			Nums.add(num);	
@@ -27,7 +30,8 @@ public class ArrOpMenu implements ISubMenu {
 	}
 	// options operated on the array when given
 	private int printArrayOpMenu() {
-		System.out.print("\nWhat operation you want to make on the array\r\n" 
+		
+		logger.log("\nWhat operation you want to make on the array\r\n" 
 				+ "(1) Print maximum\r\n"
 				+ "(2) Print minimum\r\n"
 				+ "(3) Print mean\r\n"
@@ -78,6 +82,7 @@ public class ArrOpMenu implements ISubMenu {
 				
 			case 5:
 				System.out.println("what is the number zou want to search for?");
+				
 				int searchNum=sc.nextInt();
 				if(Nums.contains(searchNum)) {
 					System.out.println(Nums.indexOf(searchNum) + 1);
@@ -93,7 +98,8 @@ public class ArrOpMenu implements ISubMenu {
 				break;
 
 			default:
-				System.out.println("Invalid operation number, choose correct choice");
+			
+				logger.log("Invalid operation number, choose correct choice");
 				continue;				
 			}
 			

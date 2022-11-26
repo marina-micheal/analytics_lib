@@ -1,5 +1,4 @@
 package analytics_lib;
-
 import java.util.Scanner;
 
 public class MainMenu {
@@ -15,7 +14,7 @@ public class MainMenu {
 	}
 	
 	/**
-	 * Parses use
+	 * 
 	 * @return
 	 */
 	private char parseMainChoice() {

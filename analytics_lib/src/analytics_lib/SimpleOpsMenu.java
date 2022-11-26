@@ -5,18 +5,18 @@ import java.util.Scanner;
 public class SimpleOpsMenu implements ISubMenu {
 
 	Scanner sc;
-
+	Logger logger;
 	public SimpleOpsMenu( ) {
 		sc = new Scanner(System.in);		
+		logger = Logger.getInstance(LogLevel.LOG_LEVEL_DEFAULT);
 	}
 	
 	private String parseOperator() {
-		System.out.print("Enter operation (+ or - or * or / or %): ");
-		
+		logger.log("Enter operation (+ or - or * or / or %): ");
 		String operator= sc.next(); 
 		
 		while( (operator.equals("+")==false)&&(operator.equals("-")==false)&&(operator.equals("*")==false)&&(operator.equals("/")==false)&&(operator.equals("%")==false)) {
-			System.out.print("Enter correct operation (+ or - or * or / or %): ");	
+			logger.log("Enter correct operation (+ or - or * or / or %): ");
 			operator= sc.next();
 		}
 		
@@ -24,17 +24,20 @@ public class SimpleOpsMenu implements ISubMenu {
 	}
 	
 	private void executeSimpleCalcuation(String op) {
-		System.out.print("Enter first number: ");
+		logger.log("Enter first number: ");
 		int firstNum= sc.nextInt();
-		System.out.print("Enter second number: "); 
+		logger.log("Enter second number: ");
+		
 		int secondNum=sc.nextInt();
 					
 		int result = Calculator.calculate(op, firstNum, secondNum);
-		System.out.println(result);
+		String resultString=Integer.toString(result); 
+		logger.log(resultString);
+		
 	}
 	
 	private Boolean askToContinue() {
-		System.out.print("Do you want to try another operation? (y/n): ");
+		logger.log("Do you want to try another operation? (y/n): ");
 		String r;
 		do {
 			r = sc.nextLine();
