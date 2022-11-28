@@ -1,7 +1,15 @@
 package analytics_lib;
 
+/**
+ * 
+ * @author webse
+ *
+ */
 public class SubMenuFactorty {
 	
+	/**
+	 * 
+	 */
 	static SubMenuFactorty factory = null;
 	static ArrOpMenu arrayOpsMenu = null;
 	static FileOpsMenu fileOpsMenu = null;
@@ -19,7 +27,13 @@ public class SubMenuFactorty {
 		return factory;
 	}
 	
-	public ISubMenu getSubMenuInterface(char menu) {
+	/**
+	 * 
+	 * @param menu
+	 * @return sub menu chosen
+	 * @throws IllegalArgumentException
+	 */
+	public ISubMenu getSubMenuInterface(char menu) throws IllegalArgumentException {
 		switch(menu) {
 		case 's':
 			if (simplesOpsMenu == null) {
@@ -45,11 +59,8 @@ public class SubMenuFactorty {
 			}
 			return vectorOpsMenu;
 			
-		case 'e':
-			return null;
-
 		default:
-			return null;
+			throw new IllegalArgumentException("Invalid submenu choice");
 			
 		}
 	}

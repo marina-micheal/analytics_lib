@@ -44,11 +44,7 @@ public class FileOpsMenu implements ISubMenu {
 			
 		} while (r.length() <= 0);
 			
-		if (r.charAt(0) == 'y') {
-			return true;
-		} else {
-			return false;
-		}
+		return (r.charAt(0) == 'y');
 	}
 	
 	@Override

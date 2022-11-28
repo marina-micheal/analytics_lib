@@ -1,4 +1,5 @@
 package analytics_lib;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -14,8 +15,8 @@ public class MainMenu {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * show the main menu and take the choice from the user. 
+	 * @return user choice as char value.
 	 */
 	private char parseMainChoice() {
 		logger.log("Choose operation to perform:\r\n"
@@ -25,9 +26,7 @@ public class MainMenu {
 				+ "(v) to perform linear operations on vectors\r\n"
 				+ "(e) to exit\r\n"
 				+ "Please enter your choice: ");
-		
-		
-		
+				
 		String scan;
 		do {
 			scan = sc.nextLine();
@@ -40,11 +39,6 @@ public class MainMenu {
 	/**
 	 * Displays 
 	 */	
-	private void displayUnexpectedErrorMessage() {
-		
-		logger.log("Unexpected error happened\n Please try again\n",LogLevel.LOG_LEVEL_ERROR);
-	}
-	
 	private void displayWelcomeMessage() {
 		
 		logger.log("Welcome to analytical library interface");
@@ -55,39 +49,35 @@ public class MainMenu {
 		logger.log("Bye Bye, see you next time\n");
 	}
 	
-	
 	/**
 	 * Executes the main loop of the program.
+	 * @throws Exception invalid input
 	 */
-	public void mainLoop() {		
-		Boolean exit_flag = false;
+	public void mainLoop() throws IOException {		
+		Boolean exitFlag = false;
 		ISubMenu submenu = null;
 		displayWelcomeMessage();
 		do {
 			char choice = parseMainChoice();
 			switch(choice) {
-			case 's':
-			case 'f':
-			case 'a':
-			case 'v':
-				 submenu = subMenuManager.getSubMenuInterface(choice);
-				if (submenu == null) {
-					displayUnexpectedErrorMessage();
-				} else {
+			case 's', 'f', 'a', 'v':				
+				try {
+					submenu = subMenuManager.getSubMenuInterface(choice);
 					submenu.mainLoop();
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();					
 				}
 				break;
 				
 			case 'e':
-				exit_flag = true;
+				exitFlag = true;
 				break;
 
 			default:
-				logger.log("Invalid input, choose correct choice", LogLevel.LOG_LEVEL_ERROR);
-				continue;				
+				throw new IOException("Invalid input, choose correct choice");
 			}
 			
-		}while(!exit_flag);
+		}while(Boolean.FALSE.equals(exitFlag));
 		
 		displayByeByeMessage();
 	}

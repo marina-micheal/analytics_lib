@@ -5,28 +5,28 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class ArrOpMenu implements ISubMenu {
-	ArrayList<Integer> Nums = null;
+	ArrayList<Integer> nums = null;
 	Scanner sc = null;
 	Logger logger;
 
 	public ArrOpMenu() {
-		Nums = new ArrayList<Integer>();
+		nums = new ArrayList<>();
 		sc = new Scanner(System.in);
 		logger = Logger.getInstance(LogLevel.LOG_LEVEL_DEFAULT);
 	}
 	
 	private void scanNewArray() {
-		Nums.clear();
+		nums.clear();
 
 		logger.log("Please enter array length: ");
-		int NumOfNumbers = sc.nextInt(); 
-		for(int i = 0; i < NumOfNumbers; i++) {
+		int numOfNumbers = sc.nextInt(); 
+		for(int i = 0; i < numOfNumbers; i++) {
 			logger.log("Write a new number to add to array: ");
 			int num;
 			num = sc.nextInt();
-			Nums.add(num);	
+			nums.add(num);	
 		}
-		logger.log("Your array: " + Nums);
+		logger.log("Your array: " + nums);
 
 	}
 	// options operated on the array when given
@@ -52,18 +52,18 @@ public class ArrOpMenu implements ISubMenu {
 	
 	public void Op() {
 		scanNewArray();
-		Boolean exit_flag = false;		
+		Boolean exitFlag = false;		
 		do {
 			int op = printArrayOpMenu();
 			switch(op) {
 			case 1:
-				int max = Collections.max(Nums);
+				int max = Collections.max(nums);
 			
 				logger.log(max);
 				break;
 				
 			case 2:
-				int min = Collections.min(Nums);
+				int min = Collections.min(nums);
 			
 				logger.log(min);
 				break;
@@ -71,18 +71,17 @@ public class ArrOpMenu implements ISubMenu {
 			case 3:
 				 int total = 0;
 				 int avg;
-				 for(int i = 0; i < Nums.size(); i++)
-				        total += Nums.get(i);
+				 for(int i = 0; i < nums.size(); i++)
+				        total += nums.get(i);
 				 
-				 avg = total / Nums.size(); // finding the average value
+				 avg = total / nums.size(); // finding the average value
 			
 				 logger.log("The Average is: " + avg);
 				 break;
 				 
 			case 4:
-				Collections.sort(Nums);
-				System.out.println(Nums);
-				//logger.log(Nums);
+				Collections.sort(nums);
+				logger.log(nums);
 				break;
 				
 			case 5:
@@ -91,9 +90,9 @@ public class ArrOpMenu implements ISubMenu {
 				
 				
 				int searchNum=sc.nextInt();
-				if(Nums.contains(searchNum)) {
+				if(nums.contains(searchNum)) {
 					
-					logger.log(Nums.indexOf(searchNum) + 1);
+					logger.log(nums.indexOf(searchNum) + 1);
 				}
 				break;
 				
@@ -102,7 +101,7 @@ public class ArrOpMenu implements ISubMenu {
 				break;
 				
 			case 7:
-				exit_flag = true;
+				exitFlag = true;
 				break;
 
 			default:
@@ -111,7 +110,7 @@ public class ArrOpMenu implements ISubMenu {
 				continue;				
 			}
 			
-		} while (!exit_flag);
+		} while (Boolean.FALSE.equals(exitFlag));
 	}
 	
 }

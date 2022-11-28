@@ -1,13 +1,15 @@
 
 package analytics_lib;
-import java.util.*;  
+import java.io.IOException;  
 
 public class Main {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
+	public static void main(String[] args) {		
 		MainMenu menu = new MainMenu();
-		menu.mainLoop();
+		try {
+			menu.mainLoop();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
