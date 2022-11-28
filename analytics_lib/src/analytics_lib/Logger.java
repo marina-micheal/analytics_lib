@@ -19,6 +19,10 @@ public class Logger {
 		return instance;
 	}
 	
+	
+	
+	
+	
 	public static Logger getInstance() {
 		if (instance == null) {
 			instance = new Logger(LogLevel.LOG_LEVEL_DEFAULT);
@@ -26,9 +30,14 @@ public class Logger {
 		return instance;
 	}
 	
+	
+	
+	
 	public void setLevel(LogLevel level) {
 		logLevel = level;
 	}
+	
+	
 	
 	public void log(String msg, LogLevel level) {
 		String levelstr = "";
@@ -47,7 +56,18 @@ public class Logger {
 		}
 	}
 	
+	public void log(int result) {
+		//String printedMsg =((Integer.toString(result) ,LogLevel.LOG_LEVEL_INFO);
+		System.out.println(result);
+	}
+	
+	
 	public void log(String msg) {
 		this.log(msg, LogLevel.LOG_LEVEL_DEFAULT);
 	}
+	
+	
+	
+
+	
 }

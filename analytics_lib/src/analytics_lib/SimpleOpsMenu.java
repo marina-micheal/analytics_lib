@@ -31,8 +31,8 @@ public class SimpleOpsMenu implements ISubMenu {
 		int secondNum=sc.nextInt();
 					
 		int result = Calculator.calculate(op, firstNum, secondNum);
-		String resultString=Integer.toString(result); 
-		logger.log(resultString);
+	//	String resultString=Integer.toString(result); 
+		logger.log(result);
 		
 	}
 	

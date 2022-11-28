@@ -25,8 +25,8 @@ public class FileOpsMenu implements ISubMenu {
 				SimpleOpData opData = fReader.readLine();
 				if (opData != null) {
 					int result = Calculator.calculate(opData);
-					String resultString=Integer.toString(result); 
-					logger.log(resultString);
+					//String resultString=Integer.toString(result); 
+					logger.log(result);
 				
 					
 				}						
@@ -35,8 +35,9 @@ public class FileOpsMenu implements ISubMenu {
 	}
 	
 	private Boolean askToContinue() {
-		System.out.print("Do you want to try another file? (y/n): ");
 		
+	
+		logger.log("Do you want to try another file? (y/n): ");
 		String r;
 		do {
 			r = sc.nextLine();

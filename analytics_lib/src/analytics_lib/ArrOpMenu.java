@@ -26,7 +26,8 @@ public class ArrOpMenu implements ISubMenu {
 			num = sc.nextInt();
 			Nums.add(num);	
 		}
-		System.out.print("Your array: " + Nums);
+		logger.log("Your array: " + Nums);
+
 	}
 	// options operated on the array when given
 	private int printArrayOpMenu() {
@@ -57,12 +58,14 @@ public class ArrOpMenu implements ISubMenu {
 			switch(op) {
 			case 1:
 				int max = Collections.max(Nums);
-				System.out.println(max);
+			
+				logger.log(max);
 				break;
 				
 			case 2:
 				int min = Collections.min(Nums);
-				System.out.println(min);
+			
+				logger.log(min);
 				break;
 				
 			case 3:
@@ -72,20 +75,25 @@ public class ArrOpMenu implements ISubMenu {
 				        total += Nums.get(i);
 				 
 				 avg = total / Nums.size(); // finding the average value
-				 System.out.println("The Average is: " + avg);
+			
+				 logger.log("The Average is: " + avg);
 				 break;
 				 
 			case 4:
 				Collections.sort(Nums);
 				System.out.println(Nums);
+				//logger.log(Nums);
 				break;
 				
 			case 5:
-				System.out.println("what is the number zou want to search for?");
+				
+				logger.log("what is the number zou want to search for?");
+				
 				
 				int searchNum=sc.nextInt();
 				if(Nums.contains(searchNum)) {
-					System.out.println(Nums.indexOf(searchNum) + 1);
+					
+					logger.log(Nums.indexOf(searchNum) + 1);
 				}
 				break;
 				

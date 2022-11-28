@@ -8,25 +8,31 @@ public class VectorOpsMenu implements ISubMenu {
 	Vector<Integer> vec1 = null;
 	Vector<Integer> vec2 = null;
 	Scanner sc = null;
+	Logger logger;
 
 	public VectorOpsMenu() {
 		vec1 = new Vector<Integer>();
 		vec2 = new Vector<Integer>();
 		sc = new Scanner(System.in);
+		logger = Logger.getInstance(LogLevel.LOG_LEVEL_DEFAULT);
 	}
 	
 	private void scanNewVectors() {
 		vec1.clear();
 		vec2.clear();
-		System.out.print("Please enter vector length: ");
+		
+		logger.log("Please enter vector length: ");
+		
 		int NumOfNumbers = sc.nextInt(); 
 		for(int i = 0; i < NumOfNumbers; i++) {
-			System.out.print("Write a new number to add to first vector: ");
+			
+			logger.log("Write a new number to add to first vector: ");
 			int num;
 			num = sc.nextInt();
 			vec1.add(num);	
 		}
 		System.out.print("First vector elements: " + vec1);
+		
 		System.out.print("\r\n");
 		for(int i = 0; i < NumOfNumbers; i++) {
 			System.out.print("Write a new number to add to second vector: ");
