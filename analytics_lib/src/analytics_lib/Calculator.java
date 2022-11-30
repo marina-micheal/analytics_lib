@@ -1,7 +1,26 @@
 package analytics_lib;
 
+/**
+ * Calculations class to perform main operations.
+ * @author Marina
+ *
+ */
 public class Calculator {
+	Logger logger; /**< Logger to log messages to user. */
 	
+	/**
+	 * Calculator default constructor.
+	 */
+	public Calculator() {
+		
+		logger = Logger.getInstance(LogLevel.LOG_LEVEL_DEFAULT);
+	}
+	
+	/**
+	 * Perform calculation operation using operation data object.
+	 * @param opData Operation data object.
+	 * @return the result int from executing the operation.
+	 */
 	public static int calculate (SimpleOpData opData) {
 		int result;
 		
@@ -14,37 +33,37 @@ public class Calculator {
 		return result;
 	}
 	
-	public static int calculate(String operator, int firstNum, int secondNum) {
+	/**
+	 * Perform calculation operation using input parameters.
+	 * @param operator Character representing operation to be performed.
+	 * @param firstNum Operation first argument.
+	 * @param secondNum Operation second argument.
+	 * @return Operation result.
+	 * @throws ArithmeticException in case of division by zero.
+	 */
+	public static int calculate(String operator, int firstNum, int secondNum) throws ArithmeticException {
 		if(operator.equals("+")) {
-			int add=firstNum + secondNum;
-			return add;
+			return firstNum + secondNum;
 		}else if (operator.equals("-")) {
-			int sub=firstNum - secondNum;
-			return sub;
+			return firstNum - secondNum;
 		}else if (operator.equals("*")) {
-			int mul=firstNum * secondNum;
-			return mul;
+			return firstNum * secondNum;
 		}else if (operator.equals("/")) {
 			
 			if(secondNum == 0) {
-				System.out.println("inavlid number");
-				return 0;
+				throw new ArithmeticException("Invalid division by zero");
 			}else {
-				int div=firstNum / secondNum;
-				return div;
+				return firstNum / secondNum;
 			}
 			
 		}else if (operator.equals("%")) {
 			if(secondNum == 0) {
-				System.out.println("inavlid number");
-				return 0;
+				throw new ArithmeticException("Invalid division by zero");
 			}else {
-				int mod=firstNum % secondNum;
-				return mod;
+				return firstNum % secondNum;
 			}
 		}else {
-			System.out.println("invalid operator");
-			return 0;
+			throw new IllegalArgumentException("invalid operator selected");
 		}
 	}
 

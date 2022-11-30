@@ -2,12 +2,19 @@ package analytics_lib;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Program main menu class.
+ * @author webse
+ *
+ */
 public class MainMenu {
+	Scanner sc; /**< Scanner to read user inputs from console. */
+	SubMenuFactorty subMenuManager = null; /**< Sub menu factory based on user inputs. */
+	Logger logger; /**< Logger to log user messages to console. */
 	
-	Scanner sc;
-	SubMenuFactorty subMenuManager = null;
-	Logger logger;
-	
+	/**
+	 * Main menu default constructor.
+	 */
 	public MainMenu() {
 		sc = new Scanner(System.in);
 		subMenuManager = SubMenuFactorty.getInstance();
@@ -15,18 +22,19 @@ public class MainMenu {
 	}
 	
 	/**
-	 * show the main menu and take the choice from the user. 
+	 * Shows the main menu and take the choice from the user. 
 	 * @return user choice as char value.
 	 */
 	private char parseMainChoice() {
-		logger.log("Choose operation to perform:\r\n"
-				+ "(s) for simple calculation operations\r\n"
-				+ "(f) for batch calculation operations from file\r\n"
-				+ "(a) to perform operations on arrays\r\n"
-				+ "(v) to perform linear operations on vectors\r\n"
-				+ "(e) to exit\r\n"
-				+ "Please enter your choice: ");
-				
+		logger.log("""
+						Choose operation to perform:
+						(s) for simple calculation operations
+						(f) for batch calculation operations from file
+						(a) to perform operations on arrays
+						(v) to perform linear operations on vectors
+						(e) to exit
+						Please enter your choice: 
+						""");	
 		String scan;
 		do {
 			scan = sc.nextLine();
@@ -37,13 +45,16 @@ public class MainMenu {
 	}
 
 	/**
-	 * Displays 
+	 * Displays welcome message to user.
 	 */	
 	private void displayWelcomeMessage() {
 		
 		logger.log("Welcome to analytical library interface");
 	}
-	
+
+	/**
+	 * Displays program normal termination message to user.
+	 */
 	private void displayByeByeMessage() {
 		
 		logger.log("Bye Bye, see you next time\n");
@@ -51,7 +62,7 @@ public class MainMenu {
 	
 	/**
 	 * Executes the main loop of the program.
-	 * @throws Exception invalid input
+	 * @throws IOException invalid user input
 	 */
 	public void mainLoop() throws IOException {		
 		Boolean exitFlag = false;
@@ -74,7 +85,7 @@ public class MainMenu {
 				break;
 
 			default:
-				throw new IOException("Invalid input, choose correct choice");
+				throw new IOException("Invalid menu input, program terminates");
 			}
 			
 		}while(Boolean.FALSE.equals(exitFlag));

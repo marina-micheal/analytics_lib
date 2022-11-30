@@ -1,6 +1,6 @@
 autoEnabled=true
 eclipse.preferences.version=1
-idePrefixKey=
+idePrefixKey=src/analytics_lib
 projectKey=analytics_lib
 serverId=localhost
 sqPrefixKey=

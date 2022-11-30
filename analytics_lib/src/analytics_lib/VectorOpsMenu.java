@@ -1,72 +1,95 @@
 package analytics_lib;
 
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.lang.Math;
 
+/**
+ * Vector operations sub menu, implementing ISubMenu interface.
+ * @author Marina
+ */
 public class VectorOpsMenu implements ISubMenu {
-	Vector<Integer> vec1 = null;
-	Vector<Integer> vec2 = null;
-	Scanner sc = null;
-	Logger logger;
+	static final String RESULT_MSG = "Result vector elements: "; /**< Constant user message to be logged. */
+	ArrayList<Integer> vec1 = null; /**< Objects list for the first vector. */
+	ArrayList<Integer> vec2 = null; /**< Objects list for the second vector. */
+	Scanner sc = null; /**< Scanner to read user inputs from console. */
+	Logger logger; /**< Logger to log the messages to user on console. */
 
+	/**
+	 * Class default constructor.
+	 */
 	public VectorOpsMenu() {
-		vec1 = new Vector<Integer>();
-		vec2 = new Vector<Integer>();
+		vec1 = new ArrayList<>();
+		vec2 = new ArrayList<>();
 		sc = new Scanner(System.in);
 		logger = Logger.getInstance(LogLevel.LOG_LEVEL_DEFAULT);
 	}
 	
+	/**
+	 * Reads from the user the first and the second vectors.
+	 */
 	private void scanNewVectors() {
 		vec1.clear();
 		vec2.clear();
 		
 		logger.log("Please enter vector length: ");
 		
-		int NumOfNumbers = sc.nextInt(); 
-		for(int i = 0; i < NumOfNumbers; i++) {
+		int numOfNumbers = sc.nextInt(); 
+		for(int i = 0; i < numOfNumbers; i++) {
 			
 			logger.log("Write a new number to add to first vector: ");
 			int num;
 			num = sc.nextInt();
 			vec1.add(num);	
 		}
-		System.out.print("First vector elements: " + vec1);
 		
-		System.out.print("\r\n");
-		for(int i = 0; i < NumOfNumbers; i++) {
-			System.out.print("Write a new number to add to second vector: ");
+		logger.log("First vector elements: " + vec1);
+		logger.log("\r\n");
+	
+		for(int i = 0; i < numOfNumbers; i++) {
+	
+			logger.log("Write a new number to add to second vector: ");
 			int num;
 			num = sc.nextInt();
 			vec2.add(num);	
 		}
-		System.out.print("Second vector elements: " + vec2);
+	
+		logger.log("Second vector elements: " + vec2);
+		
 	}
 	
+	/**
+	 * Prints the vector operations sub menu, and reads from the user the selected operation.
+	 * @return Character representing the selected operation.
+	 */
 	private char printArrayOpMenu() {
 		if (vec1.size() <= 3) {
-			System.out.print("\nWhat operation you want to make on the vectors\r\n" 
-					+ "(a) Add vectors\r\n"
-					+ "(s) Subtract vectors\r\n"
-					+ "(*) Vectors elementwise multiplication\r\n"
-					+ "(.) Vectors dot product\r\n"
-					+ "(x) Vectors cross product\r\n"
-					+ "(1) First vector magnitude\r\n"
-					+ "(2) Second vector magnitude\r\n"
-					+ "(r) Enter new vectors\r\n"
-					+ "(e) Exit this menu\r\n"
-					+ "Please enter your choice: ");
+			logger.log("""
+						What operation you want to make on the vectors?
+						(a) Add vectors
+						(s) Subtract vectors
+						(*) Vectors element-wise multiplication
+						(.) Vectors dot product
+						(x) Vectors cross product
+						(1) First vector magnitude
+						(2) Second vector magnitude
+						(r) Enter new vectors
+						(e) Exit this menu
+						Please enter your choice: 
+						""");
+		
 		} else {
-			System.out.print("\nWhat operation you want to make on the vectors\r\n" 
-					+ "(a) Add vectors\r\n"
-					+ "(s) Subtract vectors\r\n"
-					+ "(*) Vectors elementwise multiplication\r\n"
-					+ "(.) Vectors dot product\r\n"
-					+ "(1) First vector magnitude\r\n"
-					+ "(2) Second vector magnitude\r\n"
-					+ "(r) Enter new vectors\r\n"
-					+ "(e) Exit this menu\r\n"
-					+ "Please enter your choice: ");
+			logger.log("""
+					What operation you want to make on the vectors?
+					(a) Add vectors
+					(s) Subtract vectors
+					(*) Vectors element-wise multiplication
+					(.) Vectors dot product
+					(1) First vector magnitude
+					(2) Second vector magnitude
+					(r) Enter new vectors
+					(e) Exit this menu
+					Please enter your choice: 
+					""");
 		}
 		String scan;
 		do {
@@ -77,75 +100,101 @@ public class VectorOpsMenu implements ISubMenu {
 		return scan.charAt(0);
 	}
 	
-	@Override
-	public void mainLoop() {
-		Op();
-	}
-
+	/**
+	 * Adds the two vectors and prints the result.
+	 */
 	private void addTwoVectors() {
-		Vector<Integer> sumVec = new Vector<Integer>();
+		ArrayList<Integer> sumVec = new ArrayList<>();
 		for(int i = 0; i < vec1.size(); i++) {
 			sumVec.add(vec1.get(i) + vec2.get(i));	
 		}
-		System.out.print("Result vector elements: " + sumVec);
+
+		logger.log(RESULT_MSG + sumVec);
 	}
 	
+	/**
+	 * Subtracts the second vector from the first vector and prints the result.
+	 */
 	private void subTwoVectors() {
-		Vector<Integer> subVec = new Vector<Integer>();
+		ArrayList<Integer> subVec = new ArrayList<>();
 		for(int i = 0; i < vec1.size(); i++) {
 			subVec.add(vec1.get(i) - vec2.get(i));	
 		}
-		System.out.print("Result vector elements: " + subVec);
+
+		logger.log(RESULT_MSG + subVec);
 	}
 	
+	/**
+	 * Performs element wise multiplication between the two vectors and prints the result.
+	 */
 	private void elmMulTwoVectors() {
-		Vector<Integer> mulVec = new Vector<Integer>();
+		ArrayList<Integer> mulVec = new ArrayList<>();
 		for(int i = 0; i < vec1.size(); i++) {
 			mulVec.add(vec1.get(i) * vec2.get(i));	
 		}
-		System.out.print("Result vector elements: " + mulVec);
+		
+		logger.log(RESULT_MSG + mulVec);
 	}
 	
+	/**
+	 * Performs dot product between the two vectors and prints the result.
+	 */
 	private void dotProdTwoVectors() {
 		int sum = 0;
 		for(int i = 0; i < vec1.size(); i++) {
 			sum += vec1.get(i) * vec2.get(i);	
 		}
-		System.out.print("Dot product result: " + sum);
+	
+		logger.log("Dot product result: " + sum);
 	}
 	
+	/**
+	 * Performs cross product between the two vectors and prints the result.
+	 */
 	private void crsProdTwoVectors() {
 		if (vec1.size() > 3) {
-			System.out.print("Invalid vector length, vectors length should be less than or equal to 3\r\n");
-			return;
+			logger.log("Invalid vector length, vectors length should be less than or equal to 3\r\n");
 		} else {
-			Vector<Integer> mulVec = new Vector<Integer>();
+			ArrayList<Integer> mulVec = new ArrayList<>();
 			mulVec.add((vec1.get(1) * vec2.get(2)) - (vec1.get(2) * vec2.get(1)));
 			mulVec.add((vec1.get(2) * vec2.get(0)) - (vec1.get(0) * vec2.get(2)));
 			mulVec.add((vec1.get(0) * vec2.get(1)) - (vec1.get(1) * vec2.get(0)));
-			System.out.print("Result vector elements: " + mulVec);
+			
+			logger.log(RESULT_MSG + mulVec);
 		}
 	}
 	
+	/**
+	 * Prints first vector magnitude.
+	 */
 	private void printVector1Mag() {
 		int sum = 0;
 		for(int i = 0; i < vec1.size(); i++) {
 			sum += vec1.get(i) * vec1.get(i);	
 		}
-		System.out.print("Vector 1 magnitude: " + Math.sqrt(sum));
+		
+		logger.log("Vector 1 magnitude: " + Math.sqrt(sum));
 	}
 	
+	/**
+	 * Prints second vector magnitude.
+	 */
 	private void printVector2Mag() {
 		int sum = 0;
 		for(int i = 0; i < vec2.size(); i++) {
 			sum += vec2.get(i) * vec2.get(i);	
 		}
-		System.out.print("Vector 2 magnitude: " + Math.sqrt(sum));
+		
+		logger.log("Vector 2 magnitude: " + Math.sqrt(sum));
 	}
 	
-	public void Op() {
+	/**
+	 * Executes vector operations sub menu main loop.
+	 */
+	@Override
+	public void mainLoop() {
 		scanNewVectors();
-		Boolean exit_flag = false;		
+		Boolean exitFlag = false;		
 		do {
 			char op = printArrayOpMenu();
 			switch(op) {
@@ -182,15 +231,15 @@ public class VectorOpsMenu implements ISubMenu {
 				break;
 				
 			case 'e':
-				exit_flag = true;
+				exitFlag = true;
 				break;
 
 			default:
-				System.out.println("Invalid operation, choose correct choice");
+			
+				logger.log("Invalid operation, choose correct choice");
 				continue;				
 			}
 			
-		} while (!exit_flag);
+		} while (Boolean.FALSE.equals(exitFlag));
 	}
-	
 }

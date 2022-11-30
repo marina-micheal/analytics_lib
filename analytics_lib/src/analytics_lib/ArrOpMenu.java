@@ -4,17 +4,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+/**
+ * Array operations sub menu, implementing ISubMenu interface.
+ * @author Marina
+ */
 public class ArrOpMenu implements ISubMenu {
-	ArrayList<Integer> nums = null;
-	Scanner sc = null;
-	Logger logger;
+	ArrayList<Integer> nums = null; /**< Numbers list to operate on. */
+	Scanner sc = null; /**< Scanner to read user inputs from console. */
+	Logger logger; /**< Logger to log the messages to user on console. */
 
+	/**
+	 * Class default constructor.
+	 */
 	public ArrOpMenu() {
 		nums = new ArrayList<>();
 		sc = new Scanner(System.in);
 		logger = Logger.getInstance(LogLevel.LOG_LEVEL_DEFAULT);
 	}
 	
+	/**
+	 * Scan the input array to operate on.
+	 */
 	private void scanNewArray() {
 		nums.clear();
 
@@ -29,28 +39,32 @@ public class ArrOpMenu implements ISubMenu {
 		logger.log("Your array: " + nums);
 
 	}
-	// options operated on the array when given
+
+	/**
+	 * Prints the array operations menu and parses the user input.
+	 * @return User selected operation.
+	 */
 	private int printArrayOpMenu() {
 		
-		logger.log("\nWhat operation you want to make on the array\r\n" 
-				+ "(1) Print maximum\r\n"
-				+ "(2) Print minimum\r\n"
-				+ "(3) Print mean\r\n"
-				+ "(4) Print sorted array\r\n"
-				+ "(5) Search for number\r\n"
-				+ "(6) Create a new array\r\n"
-				+ "(7) Return back to main menu\r\n"
-				+ "Please enter your choice: ");
-		int Op = sc.nextInt();
-		return Op;
+		logger.log("""
+					What operation you want to make on the array?
+					(1) Print maximum
+					(2) Print minimum
+					(3) Print mean
+					(4) Print sorted array
+					(5) Search for number
+					(6) Create a new array
+					(7) Return back to main menu
+					Please enter your choice:
+					""");
+		return sc.nextInt();
 	}
 	
+	/**
+	 * Array operations menu main loop.
+	 */
 	@Override
 	public void mainLoop() {
-		Op();
-	}
-	
-	public void Op() {
 		scanNewArray();
 		Boolean exitFlag = false;		
 		do {
@@ -87,8 +101,6 @@ public class ArrOpMenu implements ISubMenu {
 			case 5:
 				
 				logger.log("what is the number zou want to search for?");
-				
-				
 				int searchNum=sc.nextInt();
 				if(nums.contains(searchNum)) {
 					
@@ -105,12 +117,10 @@ public class ArrOpMenu implements ISubMenu {
 				break;
 
 			default:
-			
 				logger.log("Invalid operation number, choose correct choice");
 				continue;				
 			}
 			
 		} while (Boolean.FALSE.equals(exitFlag));
 	}
-	
 }
