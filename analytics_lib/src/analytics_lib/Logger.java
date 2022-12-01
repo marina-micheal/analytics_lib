@@ -3,7 +3,7 @@ package analytics_lib;
 import java.util.List;
 
 /**
- * Logger class to log output to user on the console.
+ * Enjoying our time implementing our own logger class to log output to user on the console.
  * @author Marina
  *
  */

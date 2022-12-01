@@ -76,7 +76,7 @@ public class MainMenu {
 					submenu = subMenuManager.getSubMenuInterface(choice);
 					submenu.mainLoop();
 				} catch (IllegalArgumentException e) {
-					e.printStackTrace();					
+					logger.log("Error during executing user choice", LogLevel.LOG_LEVEL_ERROR);					
 				}
 				break;
 				

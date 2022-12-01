@@ -13,20 +13,20 @@ public class FileReader {
     private File myFile; /**< Java pointer to the file operated. */
     private int numberOfOps; /**< Number of operations to be performed stored in the file. */
     private Scanner myReader; /**< Scanner to read file content. */
-    
+    private Logger logger; /**< Logger to log messages to user on console. */
     /**
      * Constructor to create file reader using the file path.
      * @param filePath Path to the file to be operated.
      */
 	public FileReader(String filePath) {
 		myFile = new File(filePath);
+		logger = Logger.getInstance();
 		try {
 			myReader = new Scanner(myFile);
 			numberOfOps = myReader.nextInt();
 	    	myReader.nextLine();
 		} catch (FileNotFoundException e) {
-
-			e.printStackTrace();
+			logger.log("File path is invalid", LogLevel.LOG_LEVEL_ERROR);
 		}
 	}
 	
