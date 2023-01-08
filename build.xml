@@ -1,0 +1,25 @@
+<project>
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="analytics_lib/src/analytics_lib" destdir="build/src/analytics_lib/classes"/>
+    </target>
+
+    <target name="jar">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/analytics_lib.jar" basedir="build/src/analytics_lib/classes">
+            <manifest>
+                <attribute name="Main-Class" value="Main.Main"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run">
+        <java jar="build/jar/analytics_lib.jar" fork="true"/>
+    </target>
+
+</project>
